@@ -1,16 +1,20 @@
-import java.util.Objects
-
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        val notifications = SettingsManager.areNotificationsEnabled()
+        var coffee = Espresso()
+        printInfo(coffee)
+        coffee = CappuccinoDecorator(coffee)
+        printInfo(coffee)
+        coffee = LatteDecorator(coffee)
+        printInfo(coffee)
+    }
 
-        if (!notifications) {
-            SettingsManager.changeNotifications()
-        }
-
-        if (!SettingsManager.isDarkModeEnabled())
-            SettingsManager.changeTheme()
+    private fun printInfo(coffee: Espresso) {
+        print(
+            "current type: ${
+                coffee::class.java.toString().substringAfter(" ")
+            }, price: ${coffee.getCost()}, recipe: ${coffee.getDescription()}\n"
+        )
     }
 }
