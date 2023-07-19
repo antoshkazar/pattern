@@ -1,23 +1,10 @@
-import java.util.Objects
-
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        val myList = listOf<FigureFactory>(
-            TriangleFactory(
-                Dot(3, 1),
-                Dot(4, 2),
-                Dot(5, 6)
-            ),
-            SquareFactory(
-                Dot(1, 1),
-                Dot(1, 5),
-                Dot(5, 6),
-                Dot(6, 1)
-            )
-        )
-        myList.forEach{ item ->
-            println("item type: ${item::class}, square:  " + item.getSquare())
-        }
+        val builder = CarBuilder()
+        val toyota = builder.setBrand("Toyota").setModel("Rav 4").setYear(2002).setColor("RED").build()
+        val gaz = builder.setBrand("GAZ").setModel("Yel").setEnginePower(90).setYear(1990).build()
+        println(toyota)
+        println(gaz)
     }
 }
