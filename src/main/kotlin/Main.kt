@@ -1,15 +1,13 @@
 object Main {
     @JvmStatic
     fun main(args: Array<String>) {
-        val origin = MyClass(100)
-        val cloned = origin.clone() as MyClass
+        val newSensor = NewTemperatureSensor()
+        val adapter = TemperatureSensorAdapter(OldTemperatureSensor())
 
-        println("Original data: ${origin.getMyData()}")
-        println("Clone data: ${cloned.getMyData()}")
+        val processor1 = TemperatureProcessor(newSensor)
+        val processor2 = TemperatureProcessor(adapter)
 
-        origin.data = 55
-
-        println("Original data: ${origin.getMyData()}")
-        println("Clone data: ${cloned.getMyData()}")
+        println("Temperature from the new sensor: ${processor1.processTemperature()} degrees Fahrenheit")
+        println("Temperature from the old sensor (via adapter): ${processor2.processTemperature()} degrees Fahrenheit")
     }
 }
